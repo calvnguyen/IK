@@ -44,7 +44,7 @@ function merge(arr1, arr2) {
 	let i = 0; 
 	let j = 0;
 
-	// compare smallest value between two arrays, move pointer on the array that has the smaller value. Otherwise, move point in the array 
+	// compare smallest value between two arrays, move pointer on the array that has the smaller value. Otherwise, move pointer in the array 
 	// that has the larger value...
 	while (i < arr1.length && j < arr2.length) {
 		if (arr1[i] < arr2[j]) {
