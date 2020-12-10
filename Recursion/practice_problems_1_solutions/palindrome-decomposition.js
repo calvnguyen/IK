@@ -31,6 +31,8 @@ Any string in the returned array should not contain any spaces. e.g. s = "ab" th
  * @param {string} s
  * @return {string[][]}
  */
+ // T(N): O(N * 2^N)
+ // S(N): O(N)
 function generate_palindromic_decompositions(s) {
     let result = [];
     // sanity check
@@ -50,6 +52,11 @@ function palindromeHelper(str, start, slate, result) {
         return;
     }
 
+    // go through all possible substrings starting at start index
+    // for each substring, check if it's a palindrome
+    // if it is, push it to our current slate (potential solution so far)
+    // perform dfs on remaining substring (i+1)
+    // restore the slate
     for (let i = start; i < str.length; i++) {
         let subStr = str.slice(start, i + 1);
         if (!isPalindrome(subStr)) {
@@ -62,7 +69,7 @@ function palindromeHelper(str, start, slate, result) {
     }
 }
 
-
+// utility to check if string is a palindrome
 function isPalindrome(string) {
   if (string.length <= 1) {
     return true;

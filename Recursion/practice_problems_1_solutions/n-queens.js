@@ -52,12 +52,23 @@ Output: The function must return a two-dimensional array of strings representing
  * @param {number} n
  * @return {string[][]}
  */
+ // There is exactly one queen on each row and one queen on each column in a valid backtracking solution
+ // T(N): O(N!)
+ // S(N): O(1)
 function find_all_arrangements(n) {
   const results = [];
   solveNQueensHelper(n, 0, [], results);
   return results;
 }
 
+/* Queen will be under attack for these cases, 
+         *  1. There is another queen in the same column
+         *  2. There exists a queen in diagonal 1 i.e from top left to bottom right 
+         *  3. There exists a queen in diagonal 2 i.e from bottom left to top right 
+         * 
+         * Now, for attack to happen,
+         * For diagonal 1 => row - col of queen should be equal to row - col of any other position
+         * For diagonal 2 => row + col of queen should be equal to row + col of any other position */
 function isMoveValid(row, columns) {
   for (let i = 0; i < row; i++) {
     if (columns[i] === columns[row]) {
@@ -78,6 +89,7 @@ function solveNQueensHelper(n, row, slate, results) {
     return;
   }
 
+  // go row by row and backtrack
   for (let j = 0; j < n; j++) {
     slate[row] = j;
 
@@ -87,6 +99,7 @@ function solveNQueensHelper(n, row, slate, results) {
   }
 }
 
+// put in n x n format array with queens
 function formatResult(n, columns) {
   const result = [];
   for (let i = 0; i < n; i++) {
