@@ -24,3 +24,5 @@ function isPalindrome(string) {
 
 console.log(isPalindrome('racecar'));
 console.log(isPalindrome('racescar'));
+
+console.log(['0', '1'])
