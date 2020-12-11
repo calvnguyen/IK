@@ -38,11 +38,16 @@ function check_if_sum_possible(arr, k) {
 
 
 function sumHelper(start, arr, remaining, picked) {
-	// base case
+	// base cases
+	if (picked && remaining === 0) {
+		return true;
+	}
 	if (start >= arr.length) {
 		// there is at least one result subset picked
 		return (picked && remaining === 0);
 	}
+
+	// go through subsets
 	if (sumHelper(start + 1, arr, remaining, picked)) {
 		return true;
 	}
