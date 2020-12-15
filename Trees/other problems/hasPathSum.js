@@ -11,7 +11,7 @@ function hasPathSum(root, sum) {
 }
 
 // dfs helper
-function dfs(node, target, ) {
+function dfs(node, target) {
 	if (result) return;
 
 	// base case
