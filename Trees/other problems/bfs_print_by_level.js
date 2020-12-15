@@ -6,6 +6,8 @@ class TreeNode {
 	}
 }
 
+// T(N) = O(N)  where N is size of tree
+// S(N) = O(N)  shallow and wide tree (worst case)
 function bfsByLevel(root) {
 	if (!root) {
 		return [];
@@ -17,7 +19,7 @@ function bfsByLevel(root) {
 	while (queue.length !== 0) {
 		temp = [];
 		let size = queue.length;
-		
+
 		for (let i = 0; i < size; i++) {
 			let node = queue.shift();
 			temp.push(node.value);
