@@ -17,8 +17,8 @@ function bfsByLevel(root) {
 	while (queue.length !== 0) {
 		temp = [];
 		let size = queue.length;
-		while (size > 0) {
-			size--;
+		
+		for (let i = 0; i < size; i++) {
 			let node = queue.shift();
 			temp.push(node.value);
 
