@@ -23,14 +23,17 @@ function dfs(root)
 {
     if(!root) return true;
 
+    // traverse the tree in order and keep track of previous node
     if (!dfs(root.left_ptr)) {
         return false;
     }
 
+    // if the previous is greater, it is not BST since the current and prev have to be sorted
     if (prev && root.val < prev) {
         return false;
     }
 
+    // assign value to previous to compare
     prev = root.val;
     return dfs(root.right_ptr);
 
