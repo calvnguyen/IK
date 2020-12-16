@@ -24,7 +24,9 @@ function dfs(root)
     if(!root) return true;
 
     // traverse the tree in order and keep track of previous node
-    if (!dfs(root.left_ptr)) {
+    let isLeft = dfs(root.left_ptr);
+    
+    if (!isLeft) {
         return false;
     }
 
