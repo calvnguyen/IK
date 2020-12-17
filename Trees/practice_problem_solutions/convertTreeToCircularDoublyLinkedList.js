@@ -10,6 +10,7 @@ class TreeNode {
 *  T(N): O(N)
 *  S(N): O(N)
 */
+// store the head (first) and tail (last) of the doubly linked list
 class FirstLast {
     constructor() {
         this.first = new TreeNode(null);
