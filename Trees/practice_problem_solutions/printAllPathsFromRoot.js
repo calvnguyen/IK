@@ -6,8 +6,10 @@ class TreeNode {
     }
 }
 
-// T(N): O(N)
-// S(N): O(N)
+/*
+*  T(N): O(N)
+*  S(N): O(1)
+*/
 function printAllPaths(root) 
 {
     if (!root) return [];
@@ -17,12 +19,14 @@ function printAllPaths(root)
 
     dfs(root, path, slate);
 
-    return slate;
+    slate.forEach((item) => {
+        if (item) {
+            console.log(item.join(' ')); 
+        }
+    });
 };
 
 /* Pre-order traversal solution. Use a list path to store all current path, slate list to store all the paths
-*  T(N): O(N)
-*  S(N): O(1)
 */
 function dfs(root, path, slate)
 {
@@ -62,4 +66,4 @@ root.right_ptr = new TreeNode(30);
 root.left_ptr.left_ptr = new TreeNode(40);
 root.left_ptr.right_ptr = new TreeNode(50);
 
-console.log(printAllPaths(root));
+printAllPaths(root);
