@@ -19,8 +19,9 @@ function dfs(root) {
 
 	let h = 0;
 
-	for (let c of root.children) {
-		h = Math.max(h, dfs(c));
+	// check for all children and find the maximum height/depth of tree
+	for (let child of root.children) {
+		h = Math.max(h, dfs(child));
 	}
 
 	return h + 1;

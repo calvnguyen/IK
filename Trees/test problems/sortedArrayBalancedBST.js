@@ -43,6 +43,6 @@ function inOrder(node) {
 
 
 
-let result = build_balanced_bst(['8', '10', '12', '15', '16', '20', '25']);
+let result = build_balanced_bst([8, 10, 12, 15, 16, 20, 25]);
 
 console.log(inOrder(result));
