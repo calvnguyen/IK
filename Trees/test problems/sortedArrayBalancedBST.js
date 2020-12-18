@@ -10,7 +10,7 @@ class TreeNode {
 // T(N): O(N)
 // S(N): O(logN)  // Balanced Binary Search Tree
 function build_balanced_bst(a) {
-	if (a.length === 0) return root;
+	if (a.length === 0) return new TreeNode(null);
 
 	return arrToBST(a, 0, a.length -1);
 
@@ -22,7 +22,7 @@ function arrToBST(arr, start, end) {
 
 	if (start === end) return new TreeNode(arr[start]);
 
-	let mid = (start + end) / 2;
+	let mid = start + Math.floor((end - start) / 2);
 	let node = new TreeNode(arr[mid]);
 
 	node.left = arrToBST(arr, start, mid - 1);
