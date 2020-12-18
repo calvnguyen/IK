@@ -9,37 +9,39 @@ class TreeNode {
 // in-order-traversal
 // T(N): O(N)
 // S(N): O(N)
-let result = [];
+let count = 0;
+let stack = [];
 function kth_smallest_element(root, k) {
 	if (!root) return null;
-	dfs(root);
-
-	kth_smallest = result[k-1];
-
-	return kth_smallest;
+	dfs(root, k);
+	return count;
 }
 
-function dfs(node) {
-	if (node) {
+// iterative in-order traversal
+function dfs(node, k) {
+    while(stack.length !== 0 || node !== null) {
+        while(node != null) {
+            stack.push(node);
+            node = node.left_ptr;
+        }
 
-		if (node.left_ptr) {
-			dfs(node.left_ptr);
-		}
+        node = stack.pop();
+        // track the count of numbers appearing in sorted order
+        count++;
 
-		result.push(node.val);
-
-		if (node.right_ptr) {
-			dfs(node.right_ptr);
-		}
-	}
+        if (count === k) {
+            return node.val;
+        }
+        node = node.right_ptr;
+    }
 }
 
 
 const root = new TreeNode(1);
 root.left_ptr = new TreeNode(2);
 root.right_ptr = new TreeNode(3);
-//root.right_ptr.left_ptr = new TreeNode(4);
-//root.right_ptr.right_ptr = new TreeNode(7);
+root.right_ptr.left_ptr = new TreeNode(4);
+root.right_ptr.right_ptr = new TreeNode(7);
 
-console.log(kth_smallest_element(root, 3));
+console.log(kth_smallest_element(root, 4));
 
