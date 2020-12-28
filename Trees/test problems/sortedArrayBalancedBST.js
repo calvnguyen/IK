@@ -22,27 +22,29 @@ function arrToBST(arr, start, end) {
 
 	if (start === end) return new TreeNode(arr[start]);
 
-	let mid = start + Math.floor((end - start) / 2);
-	let node = new TreeNode(arr[mid]);
+	let mid = Math.floor((start + end) / 2);
+	let root = new TreeNode(arr[mid]);
 
-	node.left = arrToBST(arr, start, mid - 1);
+	root.left_ptr = arrToBST(arr, start, mid - 1);
 
-	node.right = arrToBST(arr, mid + 1, end);
+	root.right_ptr = arrToBST(arr, mid + 1, end);
 
-	return node;
+	return root;
 }
 
 function inOrder(node) { 
 	if (!node) { 
 	    return; 
 	}  
-    inOrder(node.left); 
+    inOrder(node.left_ptr); 
     console.log(node.val + " ");
-    inOrder(node.right); 
+    inOrder(node.right_ptr); 
  } 
 
 
 
 let result = build_balanced_bst([8, 10, 12, 15, 16, 20, 25]);
+
+console.log(result);
 
 console.log(inOrder(result));
