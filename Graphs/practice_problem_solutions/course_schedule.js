@@ -4,16 +4,14 @@
  * @return {number[]}
  */
 function course_schedule(n, prerequisites) {
-    let courseList = Array.from({length:n}, ()=>[]);
+    let adjList = Array.from({length:n}, ()=>[]);
     let visited = new Array(n).fill(false);
     let arrival = new Array(n).fill(-1);
     let departure = new Array(n).fill(-1);
     let timestamp = 0;
-    let topsort = [];
+    let topSort = [];
 
-    prerequisites.forEach(([c1,c2]) => {
-        courseList[c1].push(c2);
-    });
+    buildAdjList(prerequisites);
     
     for (let v = 0; v < n; v++) {
       if(!visited[v]) {
@@ -23,27 +21,38 @@ function course_schedule(n, prerequisites) {
       }
     }
 
-return topsort;
+// get decreasing order of dep. times
+return topSort.reverse();;
+
+function buildAdjList(vertices) {
+  vertices.forEach((vertice) => {
+    let src = vertice[1];
+    let dest = vertice[0];
+    adjList[src].push(dest);
+  });
+}
 
 function detectCycle(node) {
-  arrival[node] = timestamp++;
   visited[node] = true;
-
-  let neighbors = courseList[node];
+  arrival[node]= timestamp++;
+  let neighbors = adjList[node];
 
   for (let i = 0; i < neighbors.length; i++) {
     let neighbor = neighbors[i];
-
     if (!visited[neighbor]) {
-      if (detectCycle(neighbor)) return true;
+      if (detectCycle(neighbor))
+        return true;
     } else {
-      if (departure[neighbor] === -1) return true;
+      // back edge exists
+      if (departure[neighbor] === -1)
+        return true;
     }
-   }
+  }
 
-   departure[node] = timestamp++;
-   topsort.push(node);
-   return false;
+  // push increasing order of dep. times
+  topSort.push(node); 
+  departure[node] = timestamp++;
+  return false;
  }
 }
 
