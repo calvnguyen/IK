@@ -4,7 +4,7 @@
  * @return {number[]}
  */
 function course_schedule(n, prerequisites) {
-    let adjList = Array.from({length:n}, ()=>[]);
+    let adjList = Array.from({ length: n }, ()=>[]);
     let visited = new Array(n).fill(false);
     let arrival = new Array(n).fill(-1);
     let departure = new Array(n).fill(-1);
@@ -28,7 +28,11 @@ function buildAdjList(vertices) {
   vertices.forEach((vertice) => {
     let src = vertice[1];
     let dest = vertice[0];
+    console.log('src: ',src);
+    console.log('dest: ',dest);
     adjList[src].push(dest);
+    console.log('adj list');
+    console.log(adjList);
   });
 }
 
@@ -56,3 +60,5 @@ function detectCycle(node) {
  }
 }
 
+
+console.log(course_schedule(4, [[1, 0], [2, 0], [3, 1], [3, 2]]));
